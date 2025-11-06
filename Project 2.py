@@ -14,6 +14,7 @@ input_shape = (image_height, image_width, channels)
 train_dir = "/Users/williamsparenberg/Documents/GitHub/Project-2/Data/train/"
 valid_dir = "/Users/williamsparenberg/Documents/GitHub/Project-2/Data/valid/"
 
+#Data Prepping
 augment_train_data = ImageDataGenerator(
     rescale = 1./255,   
     zoom_range = .2,
@@ -39,6 +40,7 @@ valid_generator = augment_valid_data.flow_from_directory(
     class_mode='categorical'
 )
 
+#Model Creation
 model = Sequential([
     Conv2D(
         filters=32, 
@@ -85,7 +87,7 @@ early_stopping = EarlyStopping(
     patience=5,                           
     restore_best_weights=True
     )
-
+#Hyperparameter analysis
 def plot_training_metrics(history):
     acc = history.history['accuracy']
     val_acc = history.history['val_accuracy']
