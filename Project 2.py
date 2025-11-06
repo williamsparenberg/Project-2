@@ -11,22 +11,21 @@ image_width = 500
 channels = 3
 input_shape = (image_height, image_width, channels)
 
-test_dir = "/Users/williamsparenberg/Documents/GitHub/Project-2/Data/test/"
 train_dir = "/Users/williamsparenberg/Documents/GitHub/Project-2/Data/train/"
 valid_dir = "/Users/williamsparenberg/Documents/GitHub/Project-2/Data/valid/"
 
 augment_train_data = ImageDataGenerator(
-    rescale=1./255,   
-    zoom_range=.2,
-    shear_range=.2,
-    horizontal_flip=True
+    rescale = 1./255,   
+    zoom_range = .2,
+    shear_range = .2,
+    horizontal_flip = True
 )
 
 train_generator = augment_train_data.flow_from_directory(
-    directory=train_dir,
-    target_size=(image_height, image_width), 
-    batch_size=32,
-    class_mode='categorical'
+    directory = train_dir,
+    target_size = (image_height, image_width), 
+    batch_size = 32,
+    class_mode = 'categorical'
 )
 
 augment_valid_data = ImageDataGenerator(
@@ -48,19 +47,19 @@ model = Sequential([
         activation='relu', 
         input_shape=input_shape
     ),
-    MaxPooling2D(pool_size=(2, 2)), 
+    MaxPooling2D(pool_size = (2, 2)), 
     Conv2D(
-        filters=64, 
-        kernel_size=(3, 3),  
-        activation='relu'
+        filters = 64, 
+        kernel_size = (3, 3),  
+        activation = 'relu'
     ),
-    MaxPooling2D(pool_size=(2, 2)), 
+    MaxPooling2D(pool_size = (2, 2)), 
     Conv2D(
-        filters=128,             
-        kernel_size=(3, 3),  
-        activation='relu'
+        filters = 128,             
+        kernel_size = (3, 3),  
+        activation = 'relu'
     ),
-    MaxPooling2D(pool_size=(2, 2)), 
+    MaxPooling2D(pool_size = (2, 2)), 
     Flatten(), 
     Dense(
         units = 256, 
